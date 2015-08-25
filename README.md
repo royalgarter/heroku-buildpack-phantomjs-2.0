@@ -13,13 +13,18 @@ Also required is the [heroku-buildpack-multi](https://github.com/ddollar/heroku-
 and the [heroku-buildpack-apt](https://github.com/ddollar/heroku-buildpack-apt)
 
 
-Example usage:
+Example usage - note the listed packages are required:
 
 ```shell
 $ heroku create --stack cedar-14 --buildpack https://github.com/ddollar/heroku-buildpack-multi
 $ echo "https://github.com/ddollar/heroku-buildpack-apt" >> .buildpacks
 $ echo "https://github.com/srbartlett/heroku-buildpack-phantomjs-2.0.git" >> .buildpacks
-$ echo "libicu-dev" >> Aptfile
+$ cat <<EOT >> Aptfile
+libicu52
+libjpeg8
+libfontconfig
+libwebp5
+EOT
 
 $ git push heroku master
 ```
